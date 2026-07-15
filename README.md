@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-# Welcome to your Lovable project
-
-TODO: Document your project here
-=======
 **Running the Project**
 
 The frontend and backend must be started in two separate terminals.
@@ -41,4 +36,4 @@ You should see output similar to:
 Local: http://localhost:5173/
 
 Open this URL in your web browser.
->>>>>>> fcc4f15f8116df05510cdb8fc10bc9f40c85a50b
+
