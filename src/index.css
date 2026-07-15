@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── INFRASCAN Design System ─────────────────────────────────────
+   Dark industrial aesthetic with electric cyan primary accent.
+   All colors are HSL.
+──────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+@layer base {
+  :root {
+    /* Surfaces */
+    --background:      220 22% 6%;      /* #0c0f14 near-black */
+    --surface-1:       220 20% 9%;      /* card surfaces */
+    --surface-2:       220 18% 13%;     /* elevated panels */
+    --surface-3:       220 16% 17%;     /* hover states */
+
+    --foreground:      210 30% 92%;     /* main text */
+    --foreground-muted: 215 15% 55%;    /* secondary text */
+
+    /* Brand */
+    --primary:         186 100% 44%;    /* electric cyan #00d4d4 */
+    --primary-foreground: 220 22% 6%;
+
+    /* Severity */
+    --severity-minor:     142 70% 45%;  /* green  */
+    --severity-moderate:  38 100% 55%;  /* orange */
+    --severity-severe:    0 85% 58%;    /* red    */
+
+    /* Utility */
+    --card:            220 20% 9%;
+    --card-foreground: 210 30% 92%;
+    --popover:         220 18% 11%;
+    --popover-foreground: 210 30% 92%;
+    --secondary:       220 18% 13%;
+    --secondary-foreground: 210 30% 92%;
+    --muted:           220 16% 15%;
+    --muted-foreground: 215 15% 55%;
+    --accent:          186 100% 44%;
+    --accent-foreground: 220 22% 6%;
+    --destructive:     0 85% 58%;
+    --destructive-foreground: 210 30% 92%;
+    --border:          220 15% 20%;
+    --input:           220 15% 16%;
+    --ring:            186 100% 44%;
+    --radius:          0.5rem;
+
+    /* Glow effects */
+    --glow-cyan:       0 0 20px hsl(186 100% 44% / 0.4);
+    --glow-cyan-strong: 0 0 40px hsl(186 100% 44% / 0.6);
+    --glow-red:        0 0 20px hsl(0 85% 58% / 0.4);
+    --glow-green:      0 0 20px hsl(142 70% 45% / 0.4);
+
+    /* Gradients */
+    --gradient-hero:   linear-gradient(135deg, hsl(220 22% 6%) 0%, hsl(220 22% 8%) 50%, hsl(186 60% 8%) 100%);
+    --gradient-card:   linear-gradient(135deg, hsl(220 20% 9%) 0%, hsl(220 18% 11%) 100%);
+    --gradient-cyan:   linear-gradient(135deg, hsl(186 100% 44%) 0%, hsl(200 100% 55%) 100%);
+    --gradient-scan:   linear-gradient(180deg, hsl(186 100% 44% / 0) 0%, hsl(186 100% 44% / 0.08) 50%, hsl(186 100% 44% / 0) 100%);
+
+    /* Sidebar */
+    --sidebar-background: 220 22% 6%;
+    --sidebar-foreground: 210 30% 92%;
+    --sidebar-primary: 186 100% 44%;
+    --sidebar-primary-foreground: 220 22% 6%;
+    --sidebar-accent: 220 18% 13%;
+    --sidebar-accent-foreground: 210 30% 92%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 186 100% 44%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+  }
+  code, .mono {
+    font-family: 'Space Mono', monospace;
+  }
+}
+
+@layer utilities {
+  /* Glow utilities */
+  .glow-cyan   { box-shadow: var(--glow-cyan); }
+  .glow-cyan-strong { box-shadow: var(--glow-cyan-strong); }
+  .glow-red    { box-shadow: var(--glow-red); }
+  .glow-green  { box-shadow: var(--glow-green); }
+  .text-glow-cyan { text-shadow: 0 0 20px hsl(186 100% 44% / 0.7); }
+
+  /* Scan line animation */
+  .scan-line {
+    background: var(--gradient-scan);
+    animation: scan 3s ease-in-out infinite;
+  }
+
+  /* Gradient backgrounds */
+  .bg-hero     { background: var(--gradient-hero); }
+  .bg-card-gradient { background: var(--gradient-card); }
+
+  /* Grid overlay */
+  .grid-overlay {
+    background-image:
+      linear-gradient(hsl(186 100% 44% / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(186 100% 44% / 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Bordered cyan */
+  .border-cyan { border-color: hsl(var(--primary) / 0.4); }
+  .border-cyan-strong { border-color: hsl(var(--primary)); }
+
+  /* Severity colors */
+  .severity-minor    { color: hsl(var(--severity-minor)); }
+  .severity-moderate { color: hsl(var(--severity-moderate)); }
+  .severity-severe   { color: hsl(var(--severity-severe)); }
+  .bg-severity-minor    { background-color: hsl(var(--severity-minor) / 0.15); }
+  .bg-severity-moderate { background-color: hsl(var(--severity-moderate) / 0.15); }
+  .bg-severity-severe   { background-color: hsl(var(--severity-severe) / 0.15); }
+
+  /* Pulse rings */
+  .ring-pulse {
+    animation: ring-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes scan {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(400%); }
+}
+
+@keyframes ring-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+@keyframes float-up {
+  0%   { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-in-left {
+  from { transform: translateX(-30px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+.animate-float-up    { animation: float-up 0.7s ease forwards; }
+.animate-fade-in     { animation: fade-in 0.5s ease forwards; }
+.animate-slide-left  { animation: slide-in-left 0.6s ease forwards; }
+
+/* Leaflet dark map overrides */
+.leaflet-container {
+  background: hsl(220 22% 6%) !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+.leaflet-control-zoom a {
+  background: hsl(220 20% 9%) !important;
+  color: hsl(186 100% 44%) !important;
+  border-color: hsl(220 15% 20%) !important;
+}
+.leaflet-control-zoom a:hover {
+  background: hsl(220 18% 13%) !important;
+}
+.leaflet-popup-content-wrapper {
+  background: hsl(220 18% 11%) !important;
+  color: hsl(210 30% 92%) !important;
+  border: 1px solid hsl(186 100% 44% / 0.3) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 20px hsl(186 100% 44% / 0.2) !important;
+}
+.leaflet-popup-tip {
+  background: hsl(220 18% 11%) !important;
+}
+.leaflet-tile {
+  filter: brightness(0.5) saturate(0.3) hue-rotate(180deg);
+}
